@@ -9,8 +9,11 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven{url "https://dl.bintray.com/algs4/maven"}
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    // add algs4.jar
+    compile 'edu.princeton.cs:algs4:1.0.4'
 }
