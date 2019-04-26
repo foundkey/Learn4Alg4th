@@ -1,4 +1,4 @@
-package com.example.foundkey.CH01_Fundamentals.Seg1_ProgrammingModel;
+package com.example.foundkey.CH01_Fundamentals.Seg1_ProgrammingModel.Sec1;
 
 import edu.princeton.cs.algs4.StdOut;
 
