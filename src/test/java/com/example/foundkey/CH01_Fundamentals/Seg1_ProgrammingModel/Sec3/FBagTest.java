@@ -1,14 +1,10 @@
 package com.example.foundkey.CH01_Fundamentals.Seg1_ProgrammingModel.Sec3;
 
-import edu.princeton.cs.algs4.StdIn;
+import com.example.foundkey.CH01_Fundamentals.Seg3_BagsQueuesAndStacks.FBag;
 import edu.princeton.cs.algs4.StdOut;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Arrays;
-
-import static org.junit.Assert.*;
 
 public class FBagTest {
     private double[] testData;

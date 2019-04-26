@@ -1,5 +1,6 @@
 package com.example.foundkey.CH01_Fundamentals.Seg1_ProgrammingModel.Sec3;
 
+import com.example.foundkey.CH01_Fundamentals.Seg3_BagsQueuesAndStacks.FQueue;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

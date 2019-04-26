@@ -1,4 +1,4 @@
-package com.example.foundkey.CH01_Fundamentals.Seg1_ProgrammingModel.Sec3;
+package com.example.foundkey.CH01_Fundamentals.Seg3_BagsQueuesAndStacks;
 
 import java.util.ArrayList;
 import java.util.List;

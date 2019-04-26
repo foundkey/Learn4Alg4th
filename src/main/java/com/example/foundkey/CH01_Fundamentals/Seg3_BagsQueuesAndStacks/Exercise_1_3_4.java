@@ -1,6 +1,4 @@
-package com.example.foundkey.CH01_Fundamentals.Seg1_ProgrammingModel.Sec3;
-
-import java.util.Iterator;
+package com.example.foundkey.CH01_Fundamentals.Seg3_BagsQueuesAndStacks;
 
 public class Exercise_1_3_4 {
     public static boolean parentheses(String express) {
