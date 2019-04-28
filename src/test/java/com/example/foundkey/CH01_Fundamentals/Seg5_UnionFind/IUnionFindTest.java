@@ -62,6 +62,11 @@ public class IUnionFindTest {
         testAlg(new FQuickUnion());
     }
 
+    @Test
+    public void testFWeightedQuickUnion() {
+        testAlg(new FWeightedQuickUnion());
+    }
+
     private void testAlg(IUnionFind uf) {
         Assert.assertEquals(tinyComponents, testAlg(uf, TINY_UF_TXT_URL));
         Assert.assertEquals(mediumComponents, testAlg(uf, MEDIUM_UF_TXT_URL));

@@ -2,21 +2,21 @@ package com.example.foundkey.CH01_Fundamentals.Seg5_UnionFind;
 
 import java.util.Arrays;
 
-/*
-* 所有的联通量指向同一个root
- */
-public class FQuickUnion implements IUnionFind {
+public class FWeightedQuickUnion implements IUnionFind {
 
     private int[] id;
+    private int[] sz;
     private int count;
 
     @Override
     public void initial(int N) {
         count = N;
+
         id = new int[N];
-        for (int i = 0; i < N; i++) {
-            id[i] = i;
-        }
+        Arrays.setAll(id, i -> i);
+
+        sz = new int[N];
+        Arrays.fill(sz, 1);
     }
 
     @Override
@@ -28,8 +28,16 @@ public class FQuickUnion implements IUnionFind {
             return;
         }
 
-        // 合并两颗联通树
-        id[pRoot] = qRoot;
+        // 根据权重合并两颗联通树
+        if (sz[pRoot] < sz[qRoot]){
+            // p树较小，将q树合并到q树上
+            id[pRoot] = qRoot;
+            sz[qRoot] += sz[pRoot];
+        } else {
+            // q树较小，将p树合并到p树上
+            id[qRoot] = pRoot;
+            sz[pRoot] += sz[qRoot];
+        }
 
         count--;
     }
