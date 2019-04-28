@@ -10,10 +10,9 @@ public class Stopwatch {
 
     public double elapsedTime() {
         long now = System.currentTimeMillis();
-        return (now - start) / 1000.0;
-    }
+        double useTime = (now - start) / 1000.0;
+        start = now;
 
-    public void restart() {
-        start = System.currentTimeMillis();
+        return useTime;
     }
 }

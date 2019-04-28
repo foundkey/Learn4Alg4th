@@ -62,7 +62,6 @@ public class TwoSum {
         double useTime = stopwatch.elapsedTime();
         StdOut.printf("count: %d, time: %.4f\n", count, useTime);
 
-        stopwatch.restart();
         int fastCount = fastCount(copyNumbers);
         double fastUusTime = stopwatch.elapsedTime();
         StdOut.printf("fastCount: %d, time: %.4f\n", fastCount, fastUusTime);
