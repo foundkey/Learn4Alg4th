@@ -18,7 +18,8 @@ public class DoublingTest {
                 .toArray();
 
         Stopwatch timer = new Stopwatch();
-        int cnt = ThreeSum.fastCount(a);
+//        int cnt = ThreeSum.fastCount(a);
+        int cnt = ThreeSum.count(a);
         return timer.elapsedTime();
     }
 

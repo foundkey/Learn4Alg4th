@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class ThreeSum {
+
     public static int count(int[] a) {
         // 统计和为0的元组的数量
         int N = a.length;
@@ -18,6 +19,26 @@ public class ThreeSum {
                 for (int k = j + 1; k < N; k++) {
                     if (a[i] + a[j] + a[k] == 0) {
                         cnt++;
+                    }
+                }
+            }
+        }
+
+        return cnt;
+    }
+
+    public static int count2(int[] a) {
+        // 统计和为0的元组的数量
+        int N = a.length;
+        int cnt = 0;
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                for (int k = 0; k < N; k++) {
+                    if (j > i && k > j) {
+                        if (a[i] + a[j] + a[k] == 0) {
+                            cnt++;
+                        }
                     }
                 }
             }
