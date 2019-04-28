@@ -13,12 +13,12 @@ public class DoublingTest {
         int MAX = 1000000;
         int[] a = IntStream
                 .generate(() -> StdRandom.uniform(-MAX, MAX))
-                .parallel()
+                .distinct()
                 .limit(N)
                 .toArray();
 
         Stopwatch timer = new Stopwatch();
-        int cnt = ThreeSum.count(a);
+        int cnt = ThreeSum.fastCount(a);
         return timer.elapsedTime();
     }
 
