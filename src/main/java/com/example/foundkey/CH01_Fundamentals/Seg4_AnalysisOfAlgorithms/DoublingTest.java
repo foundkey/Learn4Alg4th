@@ -23,8 +23,11 @@ public class DoublingTest {
     }
 
     public static void main(String[] args) {
+        double prev = timeTrial(125);
         for (int N = 250; true; N += N) {
-            StdOut.printf("%7d %5.1fs\n", N, timeTrial(N));
+            double time = timeTrial(N);
+            StdOut.printf("%7d %5.1fs %5.1f\n", N, timeTrial(N), time / prev);
+            prev = time;
         }
     }
 }
