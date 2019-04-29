@@ -3,6 +3,7 @@ package com.example.foundkey.CH02_Sorting;
 import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FInsertion;
 import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FSelection;
 import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FShell;
+import com.example.foundkey.CH02_Sorting.Seg2_Mergesort.FMergeSort;
 import com.example.foundkey.Stopwatch;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
@@ -18,6 +19,7 @@ public class SortCompare {
     public static final String ALG_INSERTION_SENTINEL2 = "InsertionSentinel2";
     public static final String ALG_INSERTION_NO_EXCHANGE = "InsertionNoExchange";
     public static final String ALG_INSERTION_OPTIMIZED = "InsertionOptimized";
+    public static final String ALG_MERGE = "Merge";
 
     public static double time(String alg, Double[] arr) {
         // 使用alg算法排序一个数组的时间
@@ -52,6 +54,10 @@ public class SortCompare {
                 FInsertion.sortOptimized(arr);
                 break;
 
+            case ALG_MERGE:
+                FMergeSort.sort(arr);
+                break;
+
             default:
                 break;
         }
@@ -81,12 +87,16 @@ public class SortCompare {
     }
 
     public static void main(String[] args) {
-        int N = 4000;
+        int N = 400000;
         int T = 100;
 
 //        String[] algs = {ALG_SELECTION, ALG_INSERTION, ALG_SHELL};
-        String[] algs = {ALG_INSERTION, ALG_INSERTION_SENTINEL, ALG_INSERTION_SENTINEL2,
-                ALG_INSERTION_NO_EXCHANGE, ALG_INSERTION_OPTIMIZED};
+
+//        String[] algs = {ALG_INSERTION, ALG_INSERTION_SENTINEL, ALG_INSERTION_SENTINEL2,
+//                ALG_INSERTION_NO_EXCHANGE, ALG_INSERTION_OPTIMIZED};
+
+        // 比较高级排序
+        String[] algs = {ALG_SHELL, ALG_MERGE};
         double[] times = new double[algs.length];
 
         Arrays.setAll(times, i -> timeRandomInput(algs[i], N, T));
