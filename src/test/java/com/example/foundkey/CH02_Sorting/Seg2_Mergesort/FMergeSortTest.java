@@ -1,8 +1,6 @@
 package com.example.foundkey.CH02_Sorting.Seg2_Mergesort;
 
-import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FInsertion;
 import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.SortBase;
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import org.junit.Test;
@@ -21,11 +19,22 @@ public class FMergeSortTest {
     }
 
     @Test
-    public void sort() {
+    public void sortTopDown() {
         Double[] arr = getRandomArray(32);
         StdOut.println("Before Sort: " + Arrays.toString(arr));
 
-        FMergeSort.sort(arr);
+        FMergeSort.sortTopDown(arr);
+        assertTrue(SortBase.isSorted(arr));
+
+        StdOut.println("After Sort: " + Arrays.toString(arr));
+    }
+
+    @Test
+    public void sortBottomUp() {
+        Double[] arr = getRandomArray(32);
+        StdOut.println("Before Sort: " + Arrays.toString(arr));
+
+        FMergeSort.sortBottomUp(arr);
         assertTrue(SortBase.isSorted(arr));
 
         StdOut.println("After Sort: " + Arrays.toString(arr));

@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.StdRandom;
  *  Execution:    java SelectionBars n
  *  Dependencies: StdDraw.java
  *  
- *  Selection sort n random real numbers between 0 and 1, visualizing   
+ *  Selection sortTopDown n random real numbers between 0 and 1, visualizing
  *  the results by ploting bars with heights proportional to the values.
  *  
  *  % java SelectionBars 20

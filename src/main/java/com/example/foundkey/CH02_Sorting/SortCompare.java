@@ -19,7 +19,8 @@ public class SortCompare {
     public static final String ALG_INSERTION_SENTINEL2 = "InsertionSentinel2";
     public static final String ALG_INSERTION_NO_EXCHANGE = "InsertionNoExchange";
     public static final String ALG_INSERTION_OPTIMIZED = "InsertionOptimized";
-    public static final String ALG_MERGE = "Merge";
+    public static final String ALG_MERGE_TopDown = "MergeTopDown";
+    public static final String ALG_MERGE_BOTTOM_UP = "MergeBottomUp";
 
     public static double time(String alg, Double[] arr) {
         // 使用alg算法排序一个数组的时间
@@ -54,8 +55,12 @@ public class SortCompare {
                 FInsertion.sortOptimized(arr);
                 break;
 
-            case ALG_MERGE:
-                FMergeSort.sort(arr);
+            case ALG_MERGE_TopDown:
+                FMergeSort.sortTopDown(arr);
+                break;
+
+            case ALG_MERGE_BOTTOM_UP:
+                FMergeSort.sortBottomUp(arr);
                 break;
 
             default:
@@ -77,7 +82,7 @@ public class SortCompare {
 //            int size = N / 2;
 //            Double[] partition = new Double[size];
 //            Arrays.setAll(partition, i -> StdRandom.uniform());
-//            Arrays.sort(partition);
+//            Arrays.sortTopDown(partition);
 //            System.arraycopy(partition, 0, arr, 0, size);
 
             total += time(alg, arr);
@@ -87,7 +92,7 @@ public class SortCompare {
     }
 
     public static void main(String[] args) {
-        int N = 400000;
+        int N = 40000;
         int T = 100;
 
 //        String[] algs = {ALG_SELECTION, ALG_INSERTION, ALG_SHELL};
@@ -96,7 +101,7 @@ public class SortCompare {
 //                ALG_INSERTION_NO_EXCHANGE, ALG_INSERTION_OPTIMIZED};
 
         // 比较高级排序
-        String[] algs = {ALG_SHELL, ALG_MERGE};
+        String[] algs = {ALG_SHELL, ALG_MERGE_TopDown, ALG_MERGE_BOTTOM_UP};
         double[] times = new double[algs.length];
 
         Arrays.setAll(times, i -> timeRandomInput(algs[i], N, T));

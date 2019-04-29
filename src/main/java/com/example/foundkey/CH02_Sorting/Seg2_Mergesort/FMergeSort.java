@@ -28,9 +28,26 @@ public class FMergeSort {
         }
     }
 
-    public static void sort(Comparable[] arr) {
+    public static void sortTopDown(Comparable[] arr) {
         aux = new Comparable[arr.length];
         sort(arr, 0, arr.length - 1);
+    }
+
+    // 自顶向下与自底向上两个归并排序，效率相近
+    public static void sortBottomUp(Comparable[] arr) {
+        aux = new Comparable[arr.length];
+        int n = arr.length;
+
+        for (int step = 1; step < n; step += step) {
+            for (int low = 0; low + step < n; low += step + step) {
+                /*
+                * mid - low + 1 = step => mid = low + step - 1
+                * high - (mid + 1) + 1 = step => high = mid + step = low + step + step - 1
+                * 当数组长度不是2^n时，最后一个子数组长度会不足
+                 */
+                merge(arr, low, low + step - 1, Math.min(low + step + step - 1, n - 1));
+            }
+        }
     }
 
     private static void sort(Comparable[] arr, int low, int high) {
