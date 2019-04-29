@@ -2,6 +2,7 @@ package com.example.foundkey.CH02_Sorting;
 
 import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FInsertion;
 import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FSelection;
+import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FShell;
 import com.example.foundkey.Stopwatch;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
@@ -12,6 +13,7 @@ public class SortCompare {
 
     public static final String ALG_INSERTION = "Insertion";
     public static final String ALG_SELECTION = "Selection";
+    public static final String ALG_SHELL = "Shell";
 
     public static double time(String alg, Double[] arr) {
         // 使用alg算法排序一个数组的时间
@@ -24,6 +26,10 @@ public class SortCompare {
 
             case ALG_INSERTION:
                 FInsertion.sort(arr);
+                break;
+
+            case ALG_SHELL:
+                FShell.sort(arr);
                 break;
 
             default:
@@ -55,15 +61,18 @@ public class SortCompare {
     }
 
     public static void main(String[] args) {
-        int N = 4000;
+        int N = 40000;
         int T = 100;
 
-        double insertionT = timeRandomInput(ALG_INSERTION, N, T);
-        double selectionT = timeRandomInput(ALG_SELECTION, N, T);
+        String[] algs = {ALG_SELECTION, ALG_INSERTION, ALG_SHELL};
+//        String[] algs = {ALG_SHELL};
+        double[] times = new double[algs.length];
 
+        Arrays.setAll(times, i -> timeRandomInput(algs[i], N, T));
 
         StdOut.printf("For %d random Doubles\n", N);
-        StdOut.printf("%s - %.2fs\n", ALG_INSERTION, insertionT);
-        StdOut.printf("%s - %.2fs\n", ALG_SELECTION, selectionT);
+        for (int i = 0; i < algs.length; i++) {
+            StdOut.printf("%s - %.2fs\n", algs[i], times[i]);
+        }
     }
 }

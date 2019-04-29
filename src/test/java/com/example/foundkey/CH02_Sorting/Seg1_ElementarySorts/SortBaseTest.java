@@ -62,4 +62,15 @@ public class SortBaseTest {
 
         StdOut.println("After Sort: " + Arrays.toString(arr));
     }
+
+    @Test
+    public void shellTest() {
+        Double[] arr = getRandomArray(32);
+        StdOut.println("Before Sort: " + Arrays.toString(arr));
+
+        FShell.sort(arr);
+        assertTrue(SortBase.isSorted(arr));
+
+        StdOut.println("After Sort: " + Arrays.toString(arr));
+    }
 }
