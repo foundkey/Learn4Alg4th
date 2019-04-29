@@ -15,6 +15,7 @@ public class SortCompare {
     public static final String ALG_SELECTION = "Selection";
     public static final String ALG_SHELL = "Shell";
     public static final String ALG_INSERTION_SENTINEL = "InsertionSentinel";
+    public static final String ALG_INSERTION_NO_EXCHANGE = "InsertionNoExchange";
 
     public static double time(String alg, Double[] arr) {
         // 使用alg算法排序一个数组的时间
@@ -35,6 +36,10 @@ public class SortCompare {
 
             case ALG_INSERTION_SENTINEL:
                 FInsertion.sortSentinel(arr);
+                break;
+
+            case ALG_INSERTION_NO_EXCHANGE:
+                FInsertion.sortNoExchange(arr);
                 break;
 
             default:
@@ -70,7 +75,7 @@ public class SortCompare {
         int T = 100;
 
 //        String[] algs = {ALG_SELECTION, ALG_INSERTION, ALG_SHELL};
-        String[] algs = {ALG_INSERTION, ALG_INSERTION_SENTINEL};
+        String[] algs = {ALG_INSERTION, ALG_INSERTION_SENTINEL, ALG_INSERTION_NO_EXCHANGE};
         double[] times = new double[algs.length];
 
         Arrays.setAll(times, i -> timeRandomInput(algs[i], N, T));

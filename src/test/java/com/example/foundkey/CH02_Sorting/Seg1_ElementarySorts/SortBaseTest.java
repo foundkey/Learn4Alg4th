@@ -64,6 +64,28 @@ public class SortBaseTest {
     }
 
     @Test
+    public void insertionSentinelTest() {
+        Double[] arr = getRandomArray(32);
+        StdOut.println("Before Sort: " + Arrays.toString(arr));
+
+        FInsertion.sortSentinel(arr);
+        assertTrue(SortBase.isSorted(arr));
+
+        StdOut.println("After Sort: " + Arrays.toString(arr));
+    }
+
+    @Test
+    public void insertionNoExchangeTest() {
+        Double[] arr = getRandomArray(32);
+        StdOut.println("Before Sort: " + Arrays.toString(arr));
+
+        FInsertion.sortNoExchange(arr);
+        assertTrue(SortBase.isSorted(arr));
+
+        StdOut.println("After Sort: " + Arrays.toString(arr));
+    }
+
+    @Test
     public void shellTest() {
         Double[] arr = getRandomArray(32);
         StdOut.println("Before Sort: " + Arrays.toString(arr));

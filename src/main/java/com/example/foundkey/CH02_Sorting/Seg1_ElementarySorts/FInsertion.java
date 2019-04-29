@@ -30,4 +30,19 @@ public class FInsertion {
             }
         }
     }
+
+    // Exercise 2.1.25
+    public static void sortNoExchange(Comparable[] arr) {
+        int N = arr.length;
+
+        for (int i = 1; i < N; i++) {
+            Comparable t = arr[i];
+            int j = i;
+            while (j > 0 && SortBase.less(t, arr[j - 1])) {
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            arr[j] = t;
+        }
+    }
 }
