@@ -1,9 +1,6 @@
 package com.example.foundkey;
 
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Out;
-import edu.princeton.cs.algs4.Point2D;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.*;
 
 public class HelloWorld {
     public static void main(String[] args) {
