@@ -15,7 +15,9 @@ public class SortCompare {
     public static final String ALG_SELECTION = "Selection";
     public static final String ALG_SHELL = "Shell";
     public static final String ALG_INSERTION_SENTINEL = "InsertionSentinel";
+    public static final String ALG_INSERTION_SENTINEL2 = "InsertionSentinel2";
     public static final String ALG_INSERTION_NO_EXCHANGE = "InsertionNoExchange";
+    public static final String ALG_INSERTION_OPTIMIZED = "InsertionOptimized";
 
     public static double time(String alg, Double[] arr) {
         // 使用alg算法排序一个数组的时间
@@ -38,8 +40,16 @@ public class SortCompare {
                 FInsertion.sortSentinel(arr);
                 break;
 
+            case ALG_INSERTION_SENTINEL2:
+                FInsertion.sortSentinel2(arr);
+                break;
+
             case ALG_INSERTION_NO_EXCHANGE:
                 FInsertion.sortNoExchange(arr);
+                break;
+
+            case ALG_INSERTION_OPTIMIZED:
+                FInsertion.sortOptimized(arr);
                 break;
 
             default:
@@ -71,11 +81,12 @@ public class SortCompare {
     }
 
     public static void main(String[] args) {
-        int N = 6000;
+        int N = 4000;
         int T = 100;
 
 //        String[] algs = {ALG_SELECTION, ALG_INSERTION, ALG_SHELL};
-        String[] algs = {ALG_INSERTION, ALG_INSERTION_SENTINEL, ALG_INSERTION_NO_EXCHANGE};
+        String[] algs = {ALG_INSERTION, ALG_INSERTION_SENTINEL, ALG_INSERTION_SENTINEL2,
+                ALG_INSERTION_NO_EXCHANGE, ALG_INSERTION_OPTIMIZED};
         double[] times = new double[algs.length];
 
         Arrays.setAll(times, i -> timeRandomInput(algs[i], N, T));

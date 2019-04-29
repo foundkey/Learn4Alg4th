@@ -75,11 +75,33 @@ public class SortBaseTest {
     }
 
     @Test
+    public void insertionSentinel2Test() {
+        Double[] arr = getRandomArray(32);
+        StdOut.println("Before Sort: " + Arrays.toString(arr));
+
+        FInsertion.sortSentinel2(arr);
+        assertTrue(SortBase.isSorted(arr));
+
+        StdOut.println("After Sort: " + Arrays.toString(arr));
+    }
+
+    @Test
     public void insertionNoExchangeTest() {
         Double[] arr = getRandomArray(32);
         StdOut.println("Before Sort: " + Arrays.toString(arr));
 
         FInsertion.sortNoExchange(arr);
+        assertTrue(SortBase.isSorted(arr));
+
+        StdOut.println("After Sort: " + Arrays.toString(arr));
+    }
+
+    @Test
+    public void insertionOptimizedTest() {
+        Double[] arr = getRandomArray(32);
+        StdOut.println("Before Sort: " + Arrays.toString(arr));
+
+        FInsertion.sortOptimized(arr);
         assertTrue(SortBase.isSorted(arr));
 
         StdOut.println("After Sort: " + Arrays.toString(arr));
