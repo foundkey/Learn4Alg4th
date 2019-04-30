@@ -97,11 +97,19 @@ public class SortCompare {
     }
 
     public static void main(String[] args) {
-        int N = 400000;
-        int T = 10;
+        int N = 40000;
+        int T = 100;
 
 //        String[] algs = {ALG_SELECTION, ALG_INSERTION, ALG_SHELL};
 
+        /*
+        * For 4000 random Doubles
+        * Insertion - 1.27s
+        * InsertionSentinel - 1.10s
+        * InsertionSentinel2 - 1.14s
+        * InsertionNoExchange - 0.69s *
+        * InsertionOptimized - 0.88s
+         */
 //        String[] algs = {ALG_INSERTION, ALG_INSERTION_SENTINEL, ALG_INSERTION_SENTINEL2,
 //                ALG_INSERTION_NO_EXCHANGE, ALG_INSERTION_OPTIMIZED};
 

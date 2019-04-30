@@ -44,7 +44,14 @@ public class FMergeSort {
         sort(arr, aux, 0, arr.length - 1);
     }
 
-    // 自顶向下与自底向上两个归并排序，效率相近
+    /*
+    * For 4000000 random Doubles
+    * MergeTopDown - 1.23s
+    * MergeBottomUp - 1.46s
+    * MergeQuickMerge - 1.16s
+    *
+    * 效率低于自顶向下
+     */
     public static void sortBottomUp(Comparable[] arr) {
         Comparable[] aux = new Comparable[arr.length];
         int n = arr.length;
