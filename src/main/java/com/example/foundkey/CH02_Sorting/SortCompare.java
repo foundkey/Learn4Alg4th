@@ -5,6 +5,7 @@ import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FSelection;
 import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FShell;
 import com.example.foundkey.CH02_Sorting.Seg2_Mergesort.Exercise_2_2_11;
 import com.example.foundkey.CH02_Sorting.Seg2_Mergesort.FMergeSort;
+import com.example.foundkey.CH02_Sorting.Seg3_Quicksort.FQuick;
 import com.example.foundkey.Stopwatch;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
@@ -24,6 +25,7 @@ public class SortCompare {
     public static final String ALG_MERGE_BOTTOM_UP = "MergeBottomUp";
     public static final String ALG_MERGE_QUICK_MERGE = "MergeQuickMerge";
     public static final String ALG_MERGE_OPTIMIZED = "MergeOptimized";
+    public static final String ALG_QUICK = "Quick";
 
     public static double time(String alg, Double[] arr) {
         // 使用alg算法排序一个数组的时间
@@ -74,6 +76,10 @@ public class SortCompare {
                 Exercise_2_2_11.mergeSortOptimized(arr);
                 break;
 
+            case ALG_QUICK:
+                FQuick.sort(arr);
+                break;
+
             default:
                 break;
         }
@@ -103,7 +109,7 @@ public class SortCompare {
     }
 
     public static void main(String[] args) {
-        int N = 400000;
+        int N = 100000;
         int T = 100;
 
 //        String[] algs = {ALG_SELECTION, ALG_INSERTION, ALG_SHELL};
@@ -121,9 +127,6 @@ public class SortCompare {
 //        String[] algs = {ALG_INSERTION, ALG_INSERTION_SENTINEL, ALG_INSERTION_SENTINEL2,
 //                ALG_INSERTION_NO_EXCHANGE, ALG_INSERTION_OPTIMIZED};
 
-        // 比较高级排序
-//        String[] algs = {ALG_SHELL, ALG_MERGE_TopDown, ALG_MERGE_BOTTOM_UP};
-
         /*
          * 比较归并排序
          * For 400000 random Doubles
@@ -137,7 +140,11 @@ public class SortCompare {
          *      2、分割到小数组时（长度为7左右），采用基本排序，不继续递归
          *      3、判断归并前数组是否有序（左右子数组交界处是否递增），避免不必要的归并
          */
-        String[] algs = {ALG_MERGE_TopDown, ALG_MERGE_BOTTOM_UP, ALG_MERGE_QUICK_MERGE, ALG_MERGE_OPTIMIZED};
+//        String[] algs = {ALG_MERGE_TopDown, ALG_MERGE_BOTTOM_UP, ALG_MERGE_QUICK_MERGE, ALG_MERGE_OPTIMIZED};
+
+        // 比较高级排序
+        String[] algs = {ALG_SHELL, ALG_MERGE_TopDown, ALG_QUICK};
+
         double[] times = new double[algs.length];
 
         Arrays.setAll(times, i -> timeRandomInput(algs[i], N, T));
