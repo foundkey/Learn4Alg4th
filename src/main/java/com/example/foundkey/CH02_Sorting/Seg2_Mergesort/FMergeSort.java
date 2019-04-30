@@ -75,4 +75,57 @@ public class FMergeSort {
         sort(arr, aux,mid + 1, high);
         merge(arr, aux, low, mid, high);
     }
+
+    // Exercise 2_2_10
+    /*
+    * For 400000 random Doubles
+    * MergeTopDown - 0.93s
+    * MergeBottomUp - 0.92s
+    * MergeQuickMerge - 0.74s
+    *
+    * 使用快速归并后，排序效率有明显的提升，但是排序变的不稳定
+     */
+    public static void quickMerge(Comparable[] arr, Comparable[] aux, int low, int mid, int high) {
+        // 前半部分正常拷贝
+        System.arraycopy(arr, low, aux, low, mid - low + 1);
+        // 后半部分逆序拷贝，使数组为降序
+        for (int i = mid + 1; i <= high; i++) {
+            aux[i] = arr[high - (i - (mid + 1))];
+        }
+
+        int left = low;
+        int right = high;
+        for (int i = low; i <= high; i++) {
+            /*
+             * left和right向两边靠拢，最终会有两种情况
+             *   left指向右子数组最大的数，left不再移动
+             *   right指向左子数组最大的数，right不再移动
+             */
+            if (SortBase.less(aux[left], aux[right])) {
+                arr[i] = aux[left++];
+            } else {
+                arr[i] = aux[right--];
+            }
+        }
+    }
+
+    public static void sortQuickMerge(Comparable[] arr) {
+        Comparable[] aux = new Comparable[arr.length];
+        sortQuickMerge(arr, aux, 0, arr.length - 1);
+    }
+
+    private static void sortQuickMerge(Comparable[] arr, Comparable[] aux, int low, int high) {
+        if (high <= low) {
+            return;
+        }
+
+        /*
+         * 和mid = (low + high) / 2相比，减法的写法可以防止大整数相加时溢出带来的错误
+         */
+        int mid = low + (high - low) / 2;
+
+        sort(arr, aux, low, mid);
+        sort(arr, aux,mid + 1, high);
+        quickMerge(arr, aux, low, mid, high);
+    }
 }

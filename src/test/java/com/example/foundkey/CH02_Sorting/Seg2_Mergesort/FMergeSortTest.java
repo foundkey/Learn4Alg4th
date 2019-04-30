@@ -39,4 +39,15 @@ public class FMergeSortTest {
 
         StdOut.println("After Sort: " + Arrays.toString(arr));
     }
+
+    @Test
+    public void quickMerge() {
+        Double[] arr = getRandomArray(32);
+        StdOut.println("Before Sort: " + Arrays.toString(arr));
+
+        FMergeSort.sortQuickMerge(arr);
+        assertTrue(SortBase.isSorted(arr));
+
+        StdOut.println("After Sort: " + Arrays.toString(arr));
+    }
 }

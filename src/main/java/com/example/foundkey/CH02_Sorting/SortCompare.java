@@ -21,6 +21,7 @@ public class SortCompare {
     public static final String ALG_INSERTION_OPTIMIZED = "InsertionOptimized";
     public static final String ALG_MERGE_TopDown = "MergeTopDown";
     public static final String ALG_MERGE_BOTTOM_UP = "MergeBottomUp";
+    public static final String ALG_MERGE_QUICK_MERGE = "MergeQuickMerge";
 
     public static double time(String alg, Double[] arr) {
         // 使用alg算法排序一个数组的时间
@@ -63,6 +64,10 @@ public class SortCompare {
                 FMergeSort.sortBottomUp(arr);
                 break;
 
+            case ALG_MERGE_QUICK_MERGE:
+                FMergeSort.sortQuickMerge(arr);
+                break;
+
             default:
                 break;
         }
@@ -92,8 +97,8 @@ public class SortCompare {
     }
 
     public static void main(String[] args) {
-        int N = 40000;
-        int T = 100;
+        int N = 400000;
+        int T = 10;
 
 //        String[] algs = {ALG_SELECTION, ALG_INSERTION, ALG_SHELL};
 
@@ -101,7 +106,10 @@ public class SortCompare {
 //                ALG_INSERTION_NO_EXCHANGE, ALG_INSERTION_OPTIMIZED};
 
         // 比较高级排序
-        String[] algs = {ALG_SHELL, ALG_MERGE_TopDown, ALG_MERGE_BOTTOM_UP};
+//        String[] algs = {ALG_SHELL, ALG_MERGE_TopDown, ALG_MERGE_BOTTOM_UP};
+
+        // 比较归并排序
+        String[] algs = {ALG_MERGE_TopDown, ALG_MERGE_BOTTOM_UP, ALG_MERGE_QUICK_MERGE};
         double[] times = new double[algs.length];
 
         Arrays.setAll(times, i -> timeRandomInput(algs[i], N, T));
