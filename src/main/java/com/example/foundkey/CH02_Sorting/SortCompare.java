@@ -3,6 +3,7 @@ package com.example.foundkey.CH02_Sorting;
 import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FInsertion;
 import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FSelection;
 import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FShell;
+import com.example.foundkey.CH02_Sorting.Seg2_Mergesort.Exercise_2_2_11;
 import com.example.foundkey.CH02_Sorting.Seg2_Mergesort.FMergeSort;
 import com.example.foundkey.Stopwatch;
 import edu.princeton.cs.algs4.StdOut;
@@ -22,6 +23,7 @@ public class SortCompare {
     public static final String ALG_MERGE_TopDown = "MergeTopDown";
     public static final String ALG_MERGE_BOTTOM_UP = "MergeBottomUp";
     public static final String ALG_MERGE_QUICK_MERGE = "MergeQuickMerge";
+    public static final String ALG_MERGE_OPTIMIZED = "MergeOptimized";
 
     public static double time(String alg, Double[] arr) {
         // 使用alg算法排序一个数组的时间
@@ -68,6 +70,10 @@ public class SortCompare {
                 FMergeSort.sortQuickMerge(arr);
                 break;
 
+            case ALG_MERGE_OPTIMIZED:
+                Exercise_2_2_11.mergeSortOptimized(arr);
+                break;
+
             default:
                 break;
         }
@@ -97,7 +103,7 @@ public class SortCompare {
     }
 
     public static void main(String[] args) {
-        int N = 40000;
+        int N = 400000;
         int T = 100;
 
 //        String[] algs = {ALG_SELECTION, ALG_INSERTION, ALG_SHELL};
@@ -109,6 +115,8 @@ public class SortCompare {
         * InsertionSentinel2 - 1.14s
         * InsertionNoExchange - 0.69s *
         * InsertionOptimized - 0.88s
+        *
+        * 插入排序优化核心：减少交换的次数（逐个后移代替交换）
          */
 //        String[] algs = {ALG_INSERTION, ALG_INSERTION_SENTINEL, ALG_INSERTION_SENTINEL2,
 //                ALG_INSERTION_NO_EXCHANGE, ALG_INSERTION_OPTIMIZED};
@@ -116,8 +124,20 @@ public class SortCompare {
         // 比较高级排序
 //        String[] algs = {ALG_SHELL, ALG_MERGE_TopDown, ALG_MERGE_BOTTOM_UP};
 
-        // 比较归并排序
-        String[] algs = {ALG_MERGE_TopDown, ALG_MERGE_BOTTOM_UP, ALG_MERGE_QUICK_MERGE};
+        /*
+         * 比较归并排序
+         * For 400000 random Doubles
+         *      MergeTopDown - 8.03s
+         *      MergeBottomUp - 9.16s
+         *      MergeQuickMerge - 7.63s
+         *      MergeOptimized - 6.78s
+         *
+         * 归并排序优化核心：
+         *      1、减少辅助数组的拷贝次数（将中级排序结果直接保存到辅助数组）
+         *      2、分割到小数组时（长度为7左右），采用基本排序，不继续递归
+         *      3、判断归并前数组是否有序（左右子数组交界处是否递增），避免不必要的归并
+         */
+        String[] algs = {ALG_MERGE_TopDown, ALG_MERGE_BOTTOM_UP, ALG_MERGE_QUICK_MERGE, ALG_MERGE_OPTIMIZED};
         double[] times = new double[algs.length];
 
         Arrays.setAll(times, i -> timeRandomInput(algs[i], N, T));

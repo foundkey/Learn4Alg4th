@@ -83,7 +83,7 @@ public class FMergeSort {
         merge(arr, aux, low, mid, high);
     }
 
-    // Exercise 2_2_10
+    //////// Exercise 2_2_10 begin ////////
     /*
     * For 400000 random Doubles
     * MergeTopDown - 0.93s
@@ -135,4 +135,5 @@ public class FMergeSort {
         sort(arr, aux,mid + 1, high);
         quickMerge(arr, aux, low, mid, high);
     }
+    //////// Exercise 2_2_10 end ////////
 }
