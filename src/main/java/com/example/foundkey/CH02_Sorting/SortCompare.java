@@ -109,7 +109,7 @@ public class SortCompare {
     }
 
     public static void main(String[] args) {
-        int N = 100000;
+        int N = 200000;
         int T = 100;
 
 //        String[] algs = {ALG_SELECTION, ALG_INSERTION, ALG_SHELL};
@@ -143,7 +143,7 @@ public class SortCompare {
 //        String[] algs = {ALG_MERGE_TopDown, ALG_MERGE_BOTTOM_UP, ALG_MERGE_QUICK_MERGE, ALG_MERGE_OPTIMIZED};
 
         // 比较高级排序
-        String[] algs = {ALG_SHELL, ALG_MERGE_TopDown, ALG_QUICK};
+        String[] algs = {ALG_SHELL, ALG_MERGE_OPTIMIZED, ALG_QUICK};
 
         double[] times = new double[algs.length];
 

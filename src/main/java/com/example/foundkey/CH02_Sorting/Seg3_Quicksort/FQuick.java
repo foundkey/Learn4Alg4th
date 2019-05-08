@@ -31,6 +31,7 @@ public class FQuick {
             // --->
             while (SortBase.less(arr[++left], v)) {
                 if (left == high) {
+                    // 防止left指针越界
                     break;
                 }
             }
@@ -38,6 +39,10 @@ public class FQuick {
             // <----
             while (SortBase.less(v, arr[--right])) {
                 if (right == low) {
+                    /*
+                     * 防止right越界，但该判断是冗余的。
+                     * v永远不会比自身小，right会在指向该元素时停下，不会越界
+                     */
                     break;
                 }
             }
