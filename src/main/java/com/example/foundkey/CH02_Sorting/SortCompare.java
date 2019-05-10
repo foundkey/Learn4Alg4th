@@ -29,6 +29,7 @@ public class SortCompare {
     public static final String ALG_MERGE_OPTIMIZED = "MergeOptimized";
     public static final String ALG_QUICK = "Quick";
     public static final String ALG_QUICK3WAY = "Quick3way";
+    public static final String ALG_QUICK_BEST = "QuickBest";
 
     public static double time(String alg, Double[] arr) {
         // 使用alg算法排序一个数组的时间
@@ -87,6 +88,10 @@ public class SortCompare {
                 FQuick.sort(arr);
                 break;
 
+            case ALG_QUICK_BEST:
+                FQuick.sort(arr);
+                break;
+
             default:
                 break;
         }
@@ -120,7 +125,7 @@ public class SortCompare {
     }
 
     private static Double[] createTestData(int N) {
-        int repeat = N / 5;
+        int repeat = N / 10000;
         List<Double> list = new ArrayList<>();
         for (int i = 0; i < repeat; i++) {
             list.add(StdRandom.uniform());
@@ -172,14 +177,20 @@ public class SortCompare {
          * 快速排序比较
          *  For 400000 random Doubles, no repeat element
          *  Quick - 9.47s
-         *  Quick3way - 9.04s
+         *  FQuick3way - 9.04s
          *
          *  For 400000 random Doubles, have repeat element
          *  Quick - 5.86s
-         *  Quick3way - 5.72s
+         *  FQuick3way - 5.72s
          * 有无重复元素，三划分的算法都比较快
+         *
+         * For 400000 random Doubles
+         *  Quick - 9.57s
+         *  Quick3way - 9.15s
+         *  QuickBest - 9.13s
+         * 三划分法还是挺有优势的
          */
-        String[] algs = {ALG_QUICK, ALG_QUICK3WAY};
+        String[] algs = {ALG_QUICK, ALG_QUICK3WAY, ALG_QUICK_BEST};
 
         // 比较高级排序
 //        String[] algs = {ALG_SHELL, ALG_MERGE_OPTIMIZED, ALG_QUICK};

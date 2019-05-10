@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Quick3way {
+public class FQuick3way {
 
     public static void sort(Comparable[] arr) {
         StdRandom.shuffle(arr);
