@@ -10,8 +10,8 @@ public class FTopM {
     public static void main(String[] args) {
         int M = 5;
         In in = new In("https://algs4.cs.princeton.edu/24pq/tinyBatch.txt");
-//        IPriorityQueue<Transaction> pq = new FMinHeapPQ<>(M + 1);
-        IPriorityQueue<Transaction> pq = new FMaxHeapPQ<>(M + 1);
+        IPriorityQueue<Transaction> pq = new FMinHeapPQ<>(M + 1);
+//        IPriorityQueue<Transaction> pq = new FMaxHeapPQ<>(M + 1);
         while (in.hasNextLine()) {
             pq.insert(new Transaction(in.readLine()));
             if (pq.size() > M) {
