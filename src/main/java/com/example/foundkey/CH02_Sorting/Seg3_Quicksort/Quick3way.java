@@ -2,7 +2,12 @@ package com.example.foundkey.CH02_Sorting.Seg3_Quicksort;
 
 import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.SortBase;
 import edu.princeton.cs.algs4.Quick;
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Quick3way {
 

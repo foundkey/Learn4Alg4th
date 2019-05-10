@@ -10,7 +10,9 @@ import com.example.foundkey.Stopwatch;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SortCompare {
 
@@ -26,6 +28,7 @@ public class SortCompare {
     public static final String ALG_MERGE_QUICK_MERGE = "MergeQuickMerge";
     public static final String ALG_MERGE_OPTIMIZED = "MergeOptimized";
     public static final String ALG_QUICK = "Quick";
+    public static final String ALG_QUICK3WAY = "Quick3way";
 
     public static double time(String alg, Double[] arr) {
         // 使用alg算法排序一个数组的时间
@@ -80,6 +83,10 @@ public class SortCompare {
                 FQuick.sort(arr);
                 break;
 
+            case ALG_QUICK3WAY:
+                FQuick.sort(arr);
+                break;
+
             default:
                 break;
         }
@@ -93,6 +100,7 @@ public class SortCompare {
 
         Double[] arr = new Double[N];
         for (int t = 0; t < T; t++) {
+            // 构造随机数组
             Arrays.setAll(arr, i -> StdRandom.uniform());
 
             // 构造部分有序的数组
@@ -102,14 +110,32 @@ public class SortCompare {
 //            Arrays.sortTopDown(partition);
 //            System.arraycopy(partition, 0, arr, 0, size);
 
+            // 构造带有重复元素的数组
+//            arr = createTestData(N);
+
             total += time(alg, arr);
         }
 
         return total;
     }
 
+    private static Double[] createTestData(int N) {
+        int repeat = N / 5;
+        List<Double> list = new ArrayList<>();
+        for (int i = 0; i < repeat; i++) {
+            list.add(StdRandom.uniform());
+        }
+
+        while (list.size() < N) {
+            int index = StdRandom.uniform(repeat);
+            list.add(list.get(index));
+        }
+
+        return list.toArray(new Double[0]);
+    }
+
     public static void main(String[] args) {
-        int N = 200000;
+        int N = 400000;
         int T = 100;
 
 //        String[] algs = {ALG_SELECTION, ALG_INSERTION, ALG_SHELL};
@@ -142,8 +168,21 @@ public class SortCompare {
          */
 //        String[] algs = {ALG_MERGE_TopDown, ALG_MERGE_BOTTOM_UP, ALG_MERGE_QUICK_MERGE, ALG_MERGE_OPTIMIZED};
 
+        /*
+         * 快速排序比较
+         *  For 400000 random Doubles, no repeat element
+         *  Quick - 9.47s
+         *  Quick3way - 9.04s
+         *
+         *  For 400000 random Doubles, have repeat element
+         *  Quick - 5.86s
+         *  Quick3way - 5.72s
+         * 有无重复元素，三划分的算法都比较快
+         */
+        String[] algs = {ALG_QUICK, ALG_QUICK3WAY};
+
         // 比较高级排序
-        String[] algs = {ALG_SHELL, ALG_MERGE_OPTIMIZED, ALG_QUICK};
+//        String[] algs = {ALG_SHELL, ALG_MERGE_OPTIMIZED, ALG_QUICK};
 
         double[] times = new double[algs.length];
 
