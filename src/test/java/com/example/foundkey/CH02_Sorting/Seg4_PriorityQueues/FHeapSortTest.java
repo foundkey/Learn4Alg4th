@@ -14,4 +14,11 @@ public class FHeapSortTest {
         FHeapSort.sort(testData);
         assertTrue(SortBase.isSorted(testData));
     }
+
+    @Test
+    public void sortWithNoExchangeSink() {
+        Double[] testData = TestUtil.getRandomArray(128);
+        FHeapSort.sortWithNoExchangeSink(testData);
+        assertTrue(SortBase.isSorted(testData));
+    }
 }
