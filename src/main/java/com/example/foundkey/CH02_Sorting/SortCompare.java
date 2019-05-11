@@ -6,6 +6,7 @@ import com.example.foundkey.CH02_Sorting.Seg1_ElementarySorts.FShell;
 import com.example.foundkey.CH02_Sorting.Seg2_Mergesort.Exercise_2_2_11;
 import com.example.foundkey.CH02_Sorting.Seg2_Mergesort.FMergeSort;
 import com.example.foundkey.CH02_Sorting.Seg3_Quicksort.FQuick;
+import com.example.foundkey.CH02_Sorting.Seg4_PriorityQueues.FHeapSort;
 import com.example.foundkey.Stopwatch;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
@@ -30,6 +31,7 @@ public class SortCompare {
     public static final String ALG_QUICK = "Quick";
     public static final String ALG_QUICK3WAY = "Quick3way";
     public static final String ALG_QUICK_BEST = "QuickBest";
+    public static final String ALG_Heap = "Heap";
 
     public static double time(String alg, Double[] arr) {
         // 使用alg算法排序一个数组的时间
@@ -91,6 +93,11 @@ public class SortCompare {
             case ALG_QUICK_BEST:
                 FQuick.sort(arr);
                 break;
+
+            case ALG_Heap:
+                FHeapSort.sort(arr);
+                break;
+
 
             default:
                 break;
@@ -190,10 +197,19 @@ public class SortCompare {
          *  QuickBest - 9.13s
          * 三划分法还是挺有优势的
          */
-        String[] algs = {ALG_QUICK, ALG_QUICK3WAY, ALG_QUICK_BEST};
+//        String[] algs = {ALG_QUICK, ALG_QUICK3WAY, ALG_QUICK_BEST};
 
         // 比较高级排序
-//        String[] algs = {ALG_SHELL, ALG_MERGE_OPTIMIZED, ALG_QUICK};
+        /*
+         * For 400000 random Doubles
+         *  Shell - 21.61s
+         *  MergeOptimized - 6.74s
+         *  QuickBest - 9.02s
+         *  Heap - 14.90s
+         *
+         *  从时间效率上来说，归并排序是最优的选择
+         */
+        String[] algs = {ALG_SHELL, ALG_MERGE_OPTIMIZED, ALG_QUICK_BEST, ALG_Heap};
 
         double[] times = new double[algs.length];
 

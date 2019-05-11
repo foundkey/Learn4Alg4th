@@ -37,6 +37,8 @@ public class FMinHeapPQ<Key extends Comparable<Key>> extends FAbstractHeapPQ<Key
     protected void sink(int k) {
         while (k * 2 <= mSize) {
             int child = k * 2;
+
+            // 使child指向较小是子节点
             if (child < mSize && greater(child, child + 1)) {
                 child++;
             }
