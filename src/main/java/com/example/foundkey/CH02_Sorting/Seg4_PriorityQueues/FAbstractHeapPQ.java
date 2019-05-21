@@ -51,7 +51,7 @@ public abstract class FAbstractHeapPQ<Key extends Comparable<Key>> implements IP
     }
 
     @Override
-    public Key top() {
+    public Key root() {
         if (isEmpty()) {
             throw new NoSuchElementException("PQ underflow");
         }
@@ -59,7 +59,7 @@ public abstract class FAbstractHeapPQ<Key extends Comparable<Key>> implements IP
     }
 
     @Override
-    public Key deleteTop() {
+    public Key deleteRoot() {
         if (isEmpty()) {
             throw new NoSuchElementException("PQ underflow");
         }
@@ -132,7 +132,7 @@ public abstract class FAbstractHeapPQ<Key extends Comparable<Key>> implements IP
                 throw new NoSuchElementException();
             }
 
-            return copy.deleteTop();
+            return copy.deleteRoot();
         }
     }
 }

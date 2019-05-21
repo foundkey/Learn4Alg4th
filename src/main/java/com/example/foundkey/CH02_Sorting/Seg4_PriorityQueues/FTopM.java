@@ -15,13 +15,13 @@ public class FTopM {
         while (in.hasNextLine()) {
             pq.insert(new Transaction(in.readLine()));
             if (pq.size() > M) {
-                pq.deleteTop();
+                pq.deleteRoot();
             }
         }
 
         FStack<Transaction> stack = new FStack<>();
         while (!pq.isEmpty()) {
-            stack.push(pq.deleteTop());
+            stack.push(pq.deleteRoot());
         }
         for (Transaction t : stack) {
             StdOut.println(t);

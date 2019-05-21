@@ -17,11 +17,11 @@ public class FMaxHeapPQ<Key extends Comparable<Key>> extends FAbstractHeapPQ<Key
     }
 
     public Key max() {
-        return top();
+        return root();
     }
 
     public Key deleteMax() {
-        return deleteTop();
+        return deleteRoot();
     }
 
     // 上浮操作

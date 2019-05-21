@@ -17,11 +17,11 @@ public class FMinHeapPQ<Key extends Comparable<Key>> extends FAbstractHeapPQ<Key
     }
 
     public Key min() {
-        return top();
+        return root();
     }
 
     public Key deleteMin() {
-        return deleteTop();
+        return deleteRoot();
     }
 
     @Override
