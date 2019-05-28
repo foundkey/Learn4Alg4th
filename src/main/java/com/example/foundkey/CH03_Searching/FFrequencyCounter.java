@@ -1,7 +1,9 @@
 package com.example.foundkey.CH03_Searching;
 
 import com.example.foundkey.CH01_Fundamentals.Seg2_DataAbstraction.VisualAccumulator;
+import com.example.foundkey.CH03_Searching.Seg1_ElementarySymbolTables.FBinarySearchST;
 import com.example.foundkey.CH03_Searching.Seg1_ElementarySymbolTables.FSequentialSearchST;
+import com.example.foundkey.CH03_Searching.Seg1_ElementarySymbolTables.IOrderedSymbolTable;
 import com.example.foundkey.CH03_Searching.Seg1_ElementarySymbolTables.ISymbolTable;
 import com.example.foundkey.Stopwatch;
 import edu.princeton.cs.algs4.BST;
@@ -28,7 +30,8 @@ public class FFrequencyCounter {
         int minLen = 8;
         int distinct = 0;
         int words = 0;
-        ISymbolTable<String, Integer> st = new FSequentialSearchST<>(); // 只能处理到tale.txt
+//        ISymbolTable<String, Integer> st = new FSequentialSearchST<>(); // 只能处理到tale.txt(1.313s)
+        IOrderedSymbolTable<String, Integer> st = new FBinarySearchST<>();  // tale.txt(0.347s)
 //        RedBlackBST<String, Integer> st = new RedBlackBST<>();
 //        BST<String, Integer> st = new BST<>();
 

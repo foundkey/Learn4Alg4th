@@ -6,18 +6,20 @@ public interface IOrderedSymbolTable<Key extends Comparable<Key>, Value> extends
 
     Key max();
 
+    // 返回小于等于key的最大键
     Key floor(Key key);
 
+    // 返回大于等于key的最小键
     Key ceiling(Key key);
 
-    int rank(Key key);
-
+    // 返回排名为k的键 [ 0, size() )
     Key select(int k);
 
     void deleteMin();
 
     void deleteMax();
 
+    // [low, high]中键的数量
     int size(Key low, Key high);
 
     Iterable<Key> keys(Key low, Key high);

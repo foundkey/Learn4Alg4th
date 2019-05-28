@@ -5,7 +5,7 @@ import com.example.foundkey.CH01_Fundamentals.Seg3_BagsQueuesAndStacks.FQueue;
 public class FSequentialSearchST<Key, Value> implements ISymbolTable<Key, Value> {
 
     private int mSize;
-    private Node first;
+    private Node mFirst;
 
     private class Node {
         private Key key;
@@ -20,12 +20,14 @@ public class FSequentialSearchST<Key, Value> implements ISymbolTable<Key, Value>
     }
 
     public FSequentialSearchST() {
+        mSize = 0;
+        mFirst = null;
     }
 
     @Override
     public void put(Key key, Value value) {
         if (key == null) {
-            throw new IllegalArgumentException("first argument to put() is null");
+            throw new IllegalArgumentException("mFirst argument to put() is null");
         }
 
         if (value == null) {
@@ -33,21 +35,21 @@ public class FSequentialSearchST<Key, Value> implements ISymbolTable<Key, Value>
             return;
         }
 
-        for (Node cur = first; cur != null; cur = cur.next) {
+        for (Node cur = mFirst; cur != null; cur = cur.next) {
             if (key.equals(cur.key)) {
                 cur.value = value;
                 return;
             }
         }
 
-        first = new Node(key, value, first);
+        mFirst = new Node(key, value, mFirst);
         mSize++;
     }
 
     @Override
     public int putX(Key key, Value value) {
         if (key == null) {
-            throw new IllegalArgumentException("first argument to put() is null");
+            throw new IllegalArgumentException("mFirst argument to put() is null");
         }
 
         if (value == null) {
@@ -57,7 +59,7 @@ public class FSequentialSearchST<Key, Value> implements ISymbolTable<Key, Value>
 
         int compareCount = 0;
 
-        for (Node cur = first; cur != null; cur = cur.next) {
+        for (Node cur = mFirst; cur != null; cur = cur.next) {
             boolean b = key.equals(cur.key);
             compareCount++;
 
@@ -67,7 +69,7 @@ public class FSequentialSearchST<Key, Value> implements ISymbolTable<Key, Value>
             }
         }
 
-        first = new Node(key, value, first);
+        mFirst = new Node(key, value, mFirst);
         mSize++;
         return compareCount;
     }
@@ -78,7 +80,7 @@ public class FSequentialSearchST<Key, Value> implements ISymbolTable<Key, Value>
             throw new IllegalArgumentException("argument to get() is null");
         }
 
-        for (Node cur = first; cur != null; cur = cur.next) {
+        for (Node cur = mFirst; cur != null; cur = cur.next) {
             if (key.equals(cur.key)) {
                 return cur.value;
             }
@@ -92,7 +94,7 @@ public class FSequentialSearchST<Key, Value> implements ISymbolTable<Key, Value>
         if (key == null) {
             throw new IllegalArgumentException("argument to delete() is null");
         }
-        first = delete(first, key);
+        mFirst = delete(mFirst, key);
     }
 
     private Node delete(Node node, Key key) {
@@ -131,7 +133,7 @@ public class FSequentialSearchST<Key, Value> implements ISymbolTable<Key, Value>
     @Override
     public Iterable<Key> keys() {
         FQueue<Key> queue = new FQueue<>();
-        for (Node cur = first; cur != null; cur = cur.next) {
+        for (Node cur = mFirst; cur != null; cur = cur.next) {
             queue.enqueue(cur.key);
         }
 
