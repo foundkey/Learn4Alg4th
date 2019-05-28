@@ -15,6 +15,9 @@ public interface IOrderedSymbolTable<Key extends Comparable<Key>, Value> extends
     // 返回排名为k的键 [ 0, size() )
     Key select(int k);
 
+    // 返回key在键中的排名
+    int rank(Key key);
+
     void deleteMin();
 
     void deleteMax();
