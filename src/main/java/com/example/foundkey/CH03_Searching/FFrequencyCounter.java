@@ -5,6 +5,7 @@ import com.example.foundkey.CH03_Searching.Seg1_ElementarySymbolTables.FBinarySe
 import com.example.foundkey.CH03_Searching.Seg1_ElementarySymbolTables.FSequentialSearchST;
 import com.example.foundkey.CH03_Searching.Seg1_ElementarySymbolTables.IOrderedSymbolTable;
 import com.example.foundkey.CH03_Searching.Seg1_ElementarySymbolTables.ISymbolTable;
+import com.example.foundkey.CH03_Searching.Seg2_BinarySearchTrees.FBinarySearchTree;
 import com.example.foundkey.Stopwatch;
 import edu.princeton.cs.algs4.BST;
 import edu.princeton.cs.algs4.In;
@@ -22,16 +23,17 @@ public class FFrequencyCounter {
          *    https://algs4.cs.princeton.edu/31elementary/leipzig1M.txt
          */
 //        In in = new In("testData/taleTiny.txt");
-        In in = new In("testData/tale.txt");    // 5131 14350 (不重复单词数， 总单词数）
+//        In in = new In("testData/tale.txt");    // 5131 14350 (不重复单词数， 总单词数）
 //        In in = new In("testData/leipzig100K.txt"); // 74631 423764
 //        In in = new In("testData/leipzig300K.txt"); // 146075 1270973
-//        In in = new In("testData/leipzig1M.txt");   // 299593 4239597
+        In in = new In("testData/leipzig1M.txt");   // 299593 4239597
 
         int minLen = 8;
         int distinct = 0;
         int words = 0;
 //        ISymbolTable<String, Integer> st = new FSequentialSearchST<>(); // 只能处理到tale.txt(1.313s)
-        IOrderedSymbolTable<String, Integer> st = new FBinarySearchST<>();  // tale.txt(0.347s)
+//        IOrderedSymbolTable<String, Integer> st = new FBinarySearchST<>();  // 只能处理到tale.txt(0.347s)
+        IOrderedSymbolTable<String, Integer> st = new FBinarySearchTree<>();  // tale.txt(0.166s) Leipzig100K.txt(1.318s) Leipzig300K.txt(3.451s) Leipzig1M.txt(10.592s)
 //        RedBlackBST<String, Integer> st = new RedBlackBST<>();
 //        BST<String, Integer> st = new BST<>();
 

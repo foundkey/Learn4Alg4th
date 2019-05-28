@@ -92,6 +92,38 @@ public class FBinarySearchST<Key extends Comparable<Key>, Value> implements IOrd
         return mKeys[k];
     }
 
+    /*
+     * 返回小于key的键的数量c，
+     * 由于键按照升序保存，那么第(c + 1)个键大于等于key，第(c + 1)键的索引为(c + 1 -1) = c
+     * 可以推导出 key <= mKeys[rank(key)] (key存在时取等号）
+     *
+     * Q: 为什么不直接返回true、false？这样可以根据返回值直接判断是否查找成功，无需在比对一次
+     * A: 插入新元素时，为了保证有序，需要确定插入位置。当返回索引不等于key时，返回的索引可作为新元素的插入位置。
+     *    这样实现便于put()、floor()、ceiling()函数的实现
+     */
+    public int rank(Key key) {
+        if (key == null) {
+            throw new IllegalArgumentException("argument to rank() is null");
+        }
+
+        int low = 0;
+        int high = mSize - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int cmp = key.compareTo(mKeys[mid]);
+            if (cmp < 0) {
+                high = mid - 1;
+            } else if (cmp > 0) {
+                low = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+
+        return low;
+    }
+
     @Override
     public void deleteMin() {
         if (isEmpty()) {
@@ -284,38 +316,6 @@ public class FBinarySearchST<Key extends Comparable<Key>, Value> implements IOrd
     /*
      * Helper functions
      */
-
-    /*
-     * 返回小于key的键的数量c，
-     * 由于键按照升序保存，那么第(c + 1)个键大于等于key，第(c + 1)键的索引为(c + 1 -1) = c
-     * 可以推导出 key <= mKeys[rank(key)] (key存在时取等号）
-     *
-     * Q: 为什么不直接返回true、false？这样可以根据返回值直接判断是否查找成功，无需在比对一次
-     * A: 插入新元素时，为了保证有序，需要确定插入位置。当返回索引不等于key时，返回的索引可作为新元素的插入位置。
-     *    这样实现便于put()、floor()、ceiling()函数的实现
-     */
-    private int rank(Key key) {
-        if (key == null) {
-            throw new IllegalArgumentException("argument to rank() is null");
-        }
-
-        int low = 0;
-        int high = mSize - 1;
-
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            int cmp = key.compareTo(mKeys[mid]);
-            if (cmp < 0) {
-                high = mid - 1;
-            } else if (cmp > 0) {
-                low = mid + 1;
-            } else {
-                return mid;
-            }
-        }
-
-        return low;
-    }
 
     private boolean check() {
         return isSorted() && rankCheck();
