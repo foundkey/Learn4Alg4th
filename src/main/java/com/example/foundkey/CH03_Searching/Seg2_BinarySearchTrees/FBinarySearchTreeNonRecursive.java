@@ -373,6 +373,10 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
 
     @Override
     public Iterable<Key> keys() {
+        if (isEmpty()) {
+            return new FQueue<Key>();
+        }
+
         return keys(min(), max());
     }
 
