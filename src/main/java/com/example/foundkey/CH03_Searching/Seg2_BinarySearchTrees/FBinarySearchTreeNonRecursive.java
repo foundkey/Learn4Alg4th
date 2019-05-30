@@ -97,12 +97,18 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
             throw new IllegalArgumentException("argument to delete() is null");
         }
 
+        Node parent = null;
+        boolean isLeft = true; // 父节点来自左子树
         Node cur = mRoot;
         while (cur != null) {
             int cmp = key.compareTo(cur.key);
             if (cmp < 0) {
+                parent = cur;
+                isLeft = true;
                 cur = cur.left;
             } else if (cmp > 0) {
+                parent = cur;
+                isLeft = false;
                 cur = cur.right;
             } else {
                 break;
@@ -110,8 +116,30 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
         }
 
         if (cur != null) {
+            Node tmp = null;
+            if (cur.right == null) {
+                tmp = cur.left;
+            } else if (cur.left == null) {
+                tmp = cur.right;
+            } else {
+                tmp = minNode(cur.right);
+                cur.right = deleteMin(cur.right);
+                tmp.left = cur.left;
+                tmp.right = cur.right;
+            }
 
+            if (parent == null) {
+                mRoot = tmp;
+            } else {
+                if (isLeft) {
+                    parent.left = tmp;
+                } else {
+                    parent.right = tmp;
+                }
+            }
         }
+
+        mSize--;
     }
 
     @Override
@@ -251,7 +279,7 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
 
         int count = 0;
         for (Key k : keys()) {
-            if (k.compareTo(key) == 0) {
+            if (k.compareTo(key) >= 0) {
                 break;
             }
             count++;
@@ -266,21 +294,24 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
             throw new NoSuchElementException();
         }
 
-        Node parent = null;
-        Node cur = mRoot;
+        mRoot = deleteMin(mRoot);
+    }
 
-        while (cur.left != null) {
-            parent = cur;
+    private Node deleteMin(Node root) {
+        // 最小值为根节点
+        if (root.left == null) {
+            mSize--;
+            return root.right;
+        }
+
+        // 最小值为非根节点
+        Node cur = root;
+        while (cur.left.left != null) {
             cur = cur.left;
         }
-
-        if (parent == null) {
-            mRoot = mRoot.right;
-        } else {
-            parent.left = cur.right;
-        }
-
+        cur.left = cur.left.right;
         mSize--;
+        return root;
     }
 
     @Override
@@ -289,21 +320,24 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
             throw new NoSuchElementException();
         }
 
-        Node parent = null;
-        Node cur = mRoot;
+        mRoot = deleteMax(mRoot);
+    }
 
-        while (cur.right != null) {
-            parent = cur;
+    private Node deleteMax(Node root) {
+        // 最大值为根节点
+        if (root.right == null) {
+            mSize--;
+            return root.left;
+        }
+
+        // 最大值为非根节点
+        Node cur = root;
+        while (cur.right.right != null) {
             cur = cur.right;
         }
-
-        if (parent == null) {
-            mRoot = cur.left;
-        } else {
-            parent.right = cur.left;
-        }
-
+        cur.right = cur.right.left;
         mSize--;
+        return root;
     }
 
     @Override
@@ -352,11 +386,11 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
         Node cur = mRoot;
         while (cur != null || !stack.isEmpty()) {
             while (cur != null) {
-                stack.push(cur);
-                cur = cur.left;
-
                 if (low.compareTo(cur.key) > 0) {
                     cur = null;
+                } else {
+                    stack.push(cur);
+                    cur = cur.left;
                 }
             }
 
@@ -365,7 +399,7 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
                 queue.enqueue(cur.key);
                 cur = cur.right;
 
-                if (high.compareTo(cur.key) < 0) {
+                if (cur != null && high.compareTo(cur.key) < 0) {
                     cur = null;
                 }
             }
