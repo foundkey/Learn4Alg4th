@@ -117,10 +117,23 @@ public class FBinarySearchTree<Key extends Comparable<Key>, Value> implements IO
             }
 
             // 左右子树都不为空的情况
-            Node tmp = root;
-            root = min(tmp.right);  // 从右子数中找一个最小的节点代替删除节点
-            root.right = deleteMin(tmp.right);  // 删除右子树中的最小节点，并修改新节点的右子树
-            root.left = tmp.left;   // 修改新节点的左子树
+            // 书中的实现
+//            Node tmp = root;
+//            root = min(tmp.right);  // 找到后继节点（右子树中的最小节点）
+//            root.right = deleteMin(tmp.right);  // 删除后继节点，并修改新节点的右子树
+//            root.left = tmp.left;   // 修改新节点的左子树
+            /*
+             * 另外一种实现
+             *  1、找到后继节点（右子树中的最小节点）
+             *  2、替换删除节点的为后继节点（key、value，不包括左右子树连接）
+             *  3、删除后继节点
+             *
+             * 两种实现的思路都是一致的：在右子树中找到后继节点，补充到删除节点的位置
+             */
+            Node min = min(root.right);
+            root.key = min.key;
+            root.value = min.value;
+            root.right = deleteMin(root.right);
         }
 
         root.size = size(root.left) + 1 + size(root.right);

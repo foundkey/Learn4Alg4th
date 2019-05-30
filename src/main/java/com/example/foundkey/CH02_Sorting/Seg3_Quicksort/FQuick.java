@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.StdRandom;
 public class FQuick {
 
     public static void sort(Comparable[] arr) {
-        // 消除对输入的以来，避免最坏情况的出现
+        // 消除对输入的依赖，避免最坏情况的出现
         StdRandom.shuffle(arr);
 
         sort(arr, 0, arr.length - 1);

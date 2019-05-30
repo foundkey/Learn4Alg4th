@@ -2,7 +2,6 @@ package com.example.foundkey.CH03_Searching.Seg3_BalancedSearchTrees;
 
 import com.example.foundkey.CH01_Fundamentals.Seg3_BagsQueuesAndStacks.FQueue;
 import com.example.foundkey.CH03_Searching.Seg1_ElementarySymbolTables.IOrderedSymbolTable;
-import com.sun.org.apache.regexp.internal.RE;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.NoSuchElementException;
