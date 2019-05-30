@@ -63,6 +63,8 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
             parent.right = tmp;
         }
         mSize++;
+
+        assert check();
     }
 
     @Override
@@ -140,6 +142,7 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
         }
 
         mSize--;
+        assert check();
     }
 
     @Override
@@ -295,6 +298,7 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
         }
 
         mRoot = deleteMin(mRoot);
+        assert check();
     }
 
     private Node deleteMin(Node root) {
@@ -321,6 +325,7 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
         }
 
         mRoot = deleteMax(mRoot);
+        assert check();
     }
 
     private Node deleteMax(Node root) {
@@ -387,6 +392,7 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
         while (cur != null || !stack.isEmpty()) {
             while (cur != null) {
                 if (low.compareTo(cur.key) > 0) {
+                    // 放弃小于low的节点
                     cur = null;
                 } else {
                     stack.push(cur);
@@ -400,11 +406,39 @@ public class FBinarySearchTreeNonRecursive<Key extends Comparable<Key>, Value> i
                 cur = cur.right;
 
                 if (cur != null && high.compareTo(cur.key) < 0) {
+                    // 放弃大于high的节点
                     cur = null;
                 }
             }
         }
 
         return queue;
+    }
+
+    /*
+     * Helper function
+     */
+    private boolean check() {
+        return isBST();
+    }
+
+    private boolean isBST() {
+        return isBST(mRoot, null, null);
+    }
+
+    private boolean isBST(Node root, Key min, Key max) {
+        if (root == null) {
+            return true;
+        }
+
+        if (min != null && root.key.compareTo(min) <= 0) {
+            return false;
+        }
+
+        if (max != null && root.key.compareTo(max) >= 0) {
+            return false;
+        }
+
+        return isBST(root.left, min, root.key) && isBST(root.right, root.key, max);
     }
 }
